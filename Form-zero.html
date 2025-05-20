@@ -3,27 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Acme Corporation</title>
+    <title>Formulário de Cadastro</title>
     <style>
         body { font-family: Arial, sans-serif; }
     </style>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
 </head>
 <body>
     <h2>Formulario Seguro (vixe O.O)</h2>
     <form id="cadastro">
         <label for="nome">Nome:</label>
-        <input id="nome" name="nome">
+        <input id="nome" name="nome" type = "text" required maxlength="100"> 
         <br><br>
         <label for="email">E-mail:</label>
-        <input id="email" name="email">
+        <input id="email" name="email" type = "text" required maxlength="100">
         <br><br>
         <label for="telefone">Telefone:</label>
-        <input id="telefone" name="telefone">
+        <input id="telefone" name="telefone" type = "tel" required pattern="[0-9()\s\-\.]+"maxlength="20">
         <br><br>
         <button type="submit">Salvar!</button>
     </form>
 
     <script>
+    //REMOVI O NOME DA EMPRESA, INFORMAÇÃO ÚTIL PARA ATACANTES;
+    //CORREÇÃO DE VULNERABILIDADE QUE SE ENCAIXA NA CONFIGURAÇÃO INCORRETA DE SEGURANÇA. O CSP AJUDA A REDUZIR O IMPACTO DO XSS (INJECTION);
+    //REFORÇO NOS TIPOS DE INFORMAÇÕES DE ENTRADA DENTRO DO BODY, PARA REDUZIR RISCO DE INJECTION.
         document.getElementById("cadastro").addEventListener("submit", function(event) {
             event.preventDefault();
 
